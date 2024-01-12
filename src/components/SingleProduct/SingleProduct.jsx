@@ -1,4 +1,7 @@
-import React from 'react'
+import React from 'react';
+import "./SingleProduct.scss";
+import { useSelector, useDispatch } from 'react-redux';
+import { setIsModalVisible } from '../../store/modalSlice';
 
 const SingleProduct = () => {
   return (

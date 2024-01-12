@@ -1,0 +1,44 @@
+@import "../../App.scss";
+
+.category-items{
+    row-gap: 20px;
+    .category-item{
+        &-img{
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #fff;
+
+            & img{
+                height: 300px;
+                object-fit: cover;
+            }
+        }
+        &-name{
+            padding: 12px 0;
+            background-color: #dde2e5;
+            border-radius: 10px;
+            transition: all .3s ease-in-out;
+
+            &:hover{
+                background-color: #ccc;
+            }
+        }
+    }
+
+    @media screen and (min-width: 576px){
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 20px;
+    }
+
+    @media screen and (min-width: 992px){
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media screen and (min-width: 1200px){
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    @media screen and (min-width: 1400px){
+        grid-template-columns: repeat(5, 1fr);
+    }
+}

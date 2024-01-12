@@ -24,6 +24,20 @@ $transition: all 300ms linear;
 html{
   font-size: 10px;
 }
+html, body, #root{
+  height: 100%;
+}
+
+.wrapper{
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+main{
+  flex: 1 1 auto;
+}
+
 body{
   font-size: 1.6rem;
   line-height: 1.6;
@@ -163,6 +177,11 @@ input, textarea, select{
 .py-5{
   padding-top: 50px;
   padding-bottom: 50px;
+}
+
+.py-3{
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 /* animation and transition stopper */
