@@ -12,7 +12,6 @@ const SingleCategory = ({ products, status }) => {
     const {isModalVisible} = useSelector(state => state.modal);
 
     const viewModalHandler = (data) => {
-        console.log(data);
         dispatch(setModalData(data));
         dispatch(setIsModalVisible(true));
     }

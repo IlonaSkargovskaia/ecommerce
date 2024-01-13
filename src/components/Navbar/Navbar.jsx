@@ -6,15 +6,18 @@ import { FaShoppingCart } from "react-icons/fa";
 import { IoClose, IoMenuOutline } from "react-icons/io5";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCategories } from "../../store/categorySlice";
+import { getCartTotal } from "../../store/cartSlice";
 
 const Navbar = () => {
     const dispatch = useDispatch();
     const { data: categories } = useSelector((state) => state.category);
     const [isSideBarOpen, setIsSideBarOpen] = useState(false);
+    const {totalItems} = useSelector(state => state.cart)
 
     useEffect(() => {
         dispatch(fetchCategories());
-    }, [dispatch]);
+        dispatch(getCartTotal())
+    }, []);
 
     return (
         <nav className="navbar">
@@ -22,8 +25,8 @@ const Navbar = () => {
                 <div className="container">
                     <div className="navbar-top flex flex-between">
                         <Link to="/" className="navbar-brand">
-                            <span className="text-regal-blue">Shop</span>
-                            <span className="text-gold">Israel.</span>
+                            <span className="text-regal-blue">Shopping</span>
+                            <span className="text-gold">Il.</span>
                         </Link>
                         <form className="navbar-search flex">
                             <input type="text" placeholder="Search here ..." />
@@ -39,7 +42,7 @@ const Navbar = () => {
                                 </span>
                                 <div className="btn-txt fw-5">
                                     cart
-                                    <span className="cart-count-value">0</span>
+                                    <span className="cart-count-value">{totalItems}</span>
                                 </div>
                             </Link>
                         </div>
