@@ -12,12 +12,14 @@ const Navbar = () => {
     const dispatch = useDispatch();
     const { data: categories } = useSelector((state) => state.category);
     const [isSideBarOpen, setIsSideBarOpen] = useState(false);
-    const {totalItems} = useSelector(state => state.cart)
+
+    const cartState = useSelector(state => state.cart);
+    const {totalItems} = cartState;
 
     useEffect(() => {
         dispatch(fetchCategories());
         dispatch(getCartTotal())
-    }, [useSelector(state => state.cart)]);
+    }, [dispatch, cartState]);
 
     return (
         <nav className="navbar">

@@ -27,7 +27,7 @@ const HomePage = () => {
         dispatch(fetchCategories());
         dispatch(fetchProductsByCategory("electronics", "all"));
         dispatch(fetchProductsByCategory("jewelery", "all"));
-    }, []);
+    }, [dispatch]);
 
     return (
         <main>

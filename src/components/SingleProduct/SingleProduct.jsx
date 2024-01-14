@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./SingleProduct.scss";
 import { IoIosClose } from "react-icons/io";
 import { useSelector, useDispatch } from "react-redux";
 import { setIsModalVisible } from "../../store/modalSlice";
 import { FaMinus, FaPlus, FaShoppingCart } from "react-icons/fa";
 import { addToCart } from "../../store/cartSlice";
-import { useNavigate } from "react-router-dom";
 
 const SingleProduct = () => {
     const [qty, setQty] = useState(1);
     const [msg, setMsg] = useState(false);
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const { data: product } = useSelector((state) => state.modal);
 
     const increaseQty = () => {

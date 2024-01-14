@@ -173,7 +173,7 @@ const CartPage = () => {
                                                     items(s) Price
                                                 </span>
                                                 <span className="fw-7">
-                                                    {totalAmount} ₪
+                                                    {totalAmount.toFixed(2)} ₪
                                                 </span>
                                             </li>
                                             <li className="flex flex-between">
@@ -203,7 +203,7 @@ const CartPage = () => {
                                                 Grand Total:{" "}
                                             </span>
                                             <span className="fw-6">
-                                                {totalAmount + deliveryCharge} ₪
+                                                {(totalAmount + deliveryCharge).toFixed(2)} ₪
                                             </span>
                                         </div>
                                         <div className="cart-summary-btn">
