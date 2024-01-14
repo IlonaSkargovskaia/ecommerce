@@ -15,21 +15,22 @@ import { FaMinus, FaPlus } from "react-icons/fa";
 
 const CartPage = () => {
     const dispatch = useDispatch();
+    const cartState = useSelector((state) => state.cart);
     const {
         data: cartProducts,
         totalItems,
         totalAmount,
         deliveryCharge,
-    } = useSelector((state) => state.cart);
+    } = cartState;
 
     useEffect(() => {
         dispatch(getCartTotal());
-    }, [useSelector((state) => state.cart)]);
+    }, [dispatch, cartState]);
 
     const emptyCartMsg = <h4 className="text-red fw-6">No items found</h4>;
 
     return (
-        <div className="cart-page">
+        <main className="cart-page">
             <div className="container">
                 <div className="breadcrumb">
                     <ul className="breadcrumb-item flex">
@@ -217,7 +218,7 @@ const CartPage = () => {
                     )}
                 </div>
             </div>
-        </div>
+        </main>
     );
 };
 
