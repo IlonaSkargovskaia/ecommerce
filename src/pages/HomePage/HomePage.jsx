@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
     fetchCategories,
     fetchProductsByCategory,
+    resetCatProductAll,
 } from "../../store/categorySlice";
 import Category from "../../components/Category/Category";
 import SingleCategory from "../../components/SingleCategory/SingleCategory";
@@ -27,6 +28,10 @@ const HomePage = () => {
         dispatch(fetchCategories());
         dispatch(fetchProductsByCategory("electronics", "all"));
         dispatch(fetchProductsByCategory("jewelery", "all"));
+
+        return () => {
+            dispatch(resetCatProductAll());
+        };
     }, [dispatch]);
 
     return (

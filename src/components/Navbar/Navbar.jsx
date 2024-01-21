@@ -1,20 +1,37 @@
 import React, { useEffect, useState } from "react";
 import "./Navbar.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
 import { FaShoppingCart } from "react-icons/fa";
 import { IoClose, IoMenuOutline } from "react-icons/io5";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCategories } from "../../store/categorySlice";
 import { getCartTotal } from "../../store/cartSlice";
+import { updateSearchTerm } from "../../store/searchSlice";
+
 
 const Navbar = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate(); 
     const { data: categories } = useSelector((state) => state.category);
     const [isSideBarOpen, setIsSideBarOpen] = useState(false);
+    const [searchTerm, setSearchTerm] = useState(''); 
 
     const cartState = useSelector(state => state.cart);
     const {totalItems} = cartState;
+
+    const handleSearch = async (e) => {
+        const term = e.target.value;
+        setSearchTerm(term);
+        dispatch(updateSearchTerm(term));
+
+    };
+
+    const handleSearchButtonClick = () => {
+        const url = `/search?query=${searchTerm}`;
+        console.log('Navigating to:', url);
+        navigate(url);
+    };
 
     useEffect(() => {
         dispatch(fetchCategories());
@@ -31,10 +48,11 @@ const Navbar = () => {
                             <span className="text-gold">Il.</span>
                         </Link>
                         <form className="navbar-search flex">
-                            <input type="text" placeholder="Search here ..." />
-                            <button type="submit" className="navbar-search-btn">
+                            <input type="text" placeholder="Search here ..." onChange={handleSearch}/>
+                            <button type="submit" className="navbar-search-btn" onClick={handleSearchButtonClick}>
                                 <CiSearch />
                             </button>
+                            
                         </form>
 
                         <div className="navbar-btns">
@@ -71,7 +89,10 @@ const Navbar = () => {
                                         <Link
                                             to={`/category/${category}`}
                                             className="nav-link text-white"
-                                            onClick = {() => setIsSideBarOpen(false)}
+                                            onClick = {() => {
+                                                
+                                                setIsSideBarOpen(false);
+                                            }}
                                         >
                                             {category}
                                         </Link>

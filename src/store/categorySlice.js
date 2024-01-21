@@ -31,6 +31,9 @@ const categorySlice = createSlice({
         setCategoriesStatusSingle(state, action) {
             state.catProductSingleStatus = action.payload;
         },
+        resetCatProductAll: (state) => {
+            state.catProductAll = [];
+          },
     },
 });
 
@@ -41,6 +44,7 @@ export const {
     setCategoriesStatusAll,
     setCategoriesProductSingle,
     setCategoriesStatusSingle,
+    resetCatProductAll
 } = categorySlice.actions;
 
 export default categorySlice.reducer;
@@ -77,7 +81,7 @@ export const fetchProductsByCategory = (categoryName, dataType) => {
             }
 
             if(dataType === "single"){
-                dispatch(setCategoriesProductSingle(data.single(0,20)));
+                dispatch(setCategoriesProductSingle(data.slice(0,20)));
                 dispatch(setCategoriesStatusSingle(STATUS.IDLE))
             }
         } catch (error) {

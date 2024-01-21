@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import store from "./store/store";
 import { Provider } from "react-redux";
+import SearchPage from "./pages/SearchPage/SearchPage";
 
 function App() {
     return (
@@ -15,8 +16,9 @@ function App() {
                 <Navbar />
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/category/:id" element={<Category />} />
+                    <Route path="/category/:name" element={<Category />} />
                     <Route path="/cart" element={<Cart />} />
+                    <Route path="/search" element={<SearchPage />} />
                 </Routes>
                 <Footer />
             </BrowserRouter>
